@@ -4,6 +4,7 @@ package com.example.myapplication;
 import android.Manifest;
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
-public class MainActivity extends Activity {
+public class  MainActivity extends Activity {
     private int FINE_LOCATION_PERMISSION_CODE = 1;
 
     @Override
@@ -35,9 +36,15 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // If permission has already been acquired by the app.
+                // TODO:: Probably move this check to a later stage
                 if (ContextCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(MainActivity.this, "Permission already acquired!", Toast.LENGTH_SHORT).show();
+
+                    // --------------------------------------------------------------------
+                    // Create and start new intent here:
+                    Intent createAlarmActivityIntent = new Intent(getApplicationContext(), CreateAlarmActivity.class);
+                    startActivity(createAlarmActivityIntent);
                 } else {
                     // if no permission, request it.
                     requestLocationPermission();
@@ -92,12 +99,4 @@ public class MainActivity extends Activity {
         }
     }
 
-//    private ActivityResultLauncher<String> requestPermissionLauncher =
-//            registerForActivityResult(new RequestPermission(), isGranted -> {
-//                if (isGranted) {
-//
-//                } else {
-//
-//                }
-//            });
 }
