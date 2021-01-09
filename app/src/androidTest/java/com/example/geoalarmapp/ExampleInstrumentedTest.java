@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.geoalarmapp;
 
 import android.content.Context;
 
