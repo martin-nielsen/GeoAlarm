@@ -1,4 +1,4 @@
-package com.example.geoalarmapp;
+package geoalarmapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import geoalarmapp.R;
 
 public class CreateAlarmActivity extends AppCompatActivity {
 

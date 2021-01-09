@@ -1,4 +1,4 @@
-package data.entity;
+package geoalarmapp.data.entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

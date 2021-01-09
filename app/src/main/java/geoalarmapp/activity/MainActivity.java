@@ -1,4 +1,4 @@
-package com.example.geoalarmapp;
+package geoalarmapp.activity;
 
 
 import android.Manifest;
@@ -19,6 +19,8 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import geoalarmapp.R;
+
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 public class  MainActivity extends Activity {
@@ -28,7 +30,7 @@ public class  MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.i("created activity!!!", "The activity was created!");
+        Log.i("created GeoApp.activity!!!", "The GeoApp.activity was created!");
         setContentView(R.layout.activity_main);
 
         FloatingActionButton addAlarmButton = findViewById(R.id.floatingActionButton);
