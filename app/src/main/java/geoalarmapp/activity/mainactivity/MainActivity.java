@@ -1,4 +1,4 @@
-package geoalarmapp.activity;
+package geoalarmapp.activity.mainactivity;
 
 
 import android.Manifest;
@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,17 +19,16 @@ import androidx.core.content.ContextCompat;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import geoalarmapp.R;
+import geoalarmapp.activity.CreateAlarmActivity;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 public class  MainActivity extends Activity {
-    private int FINE_LOCATION_PERMISSION_CODE = 1;
+    private final int FINE_LOCATION_PERMISSION_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Log.i("created GeoApp.activity!!!", "The GeoApp.activity was created!");
         setContentView(R.layout.activity_main);
 
         FloatingActionButton addAlarmButton = findViewById(R.id.floatingActionButton);
@@ -43,8 +41,6 @@ public class  MainActivity extends Activity {
                         Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(MainActivity.this, "Permission already acquired!", Toast.LENGTH_SHORT).show();
 
-                    // --------------------------------------------------------------------
-                    // Create and start new intent here:
                     Intent createAlarmActivityIntent = new Intent(getApplicationContext(), CreateAlarmActivity.class);
                     startActivity(createAlarmActivityIntent);
                 } else {
