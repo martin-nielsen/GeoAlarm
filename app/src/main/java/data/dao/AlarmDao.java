@@ -1,4 +1,4 @@
-package data;
+package data.dao;
 
 import androidx.room.Dao;
 
