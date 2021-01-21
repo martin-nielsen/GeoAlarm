@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -23,14 +25,28 @@ import geoalarmapp.activity.CreateAlarmActivity;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
-public class  MainActivity extends Activity {
+public class  MainActivity extends AppCompatActivity {
     private final int FINE_LOCATION_PERMISSION_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
+        setUpAlarmList();
+
+        setUpAlarmButton();
+    }
+
+    private void setUpAlarmList() {
+        AlarmViewModel avm = new ViewModelProvider(this).get(AlarmViewModel.class);
+        avm.getAllAlarms().observe(this, alarms -> {
+            //TODO: update  view
+        });
+    }
+
+    private void setUpAlarmButton() {
         FloatingActionButton addAlarmButton = findViewById(R.id.floatingActionButton);
         addAlarmButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +65,6 @@ public class  MainActivity extends Activity {
                 }
             }
         });
-
     }
 
     //TODO: Can this be placed in some sort of service or helper class?
@@ -86,6 +101,7 @@ public class  MainActivity extends Activity {
 
         };
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == FINE_LOCATION_PERMISSION_CODE) {

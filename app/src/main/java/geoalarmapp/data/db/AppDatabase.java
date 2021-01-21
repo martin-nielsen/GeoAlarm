@@ -16,7 +16,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract AlarmDao alarmDao();
 
     public static volatile AppDatabase INSTANCE;
-    static AppDatabase getDatabase(final Context context) {
+    public static AppDatabase getDatabase(final Context context) {
         synchronized (AppDatabase.class) {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
