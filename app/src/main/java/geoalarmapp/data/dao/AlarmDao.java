@@ -16,6 +16,6 @@ public interface AlarmDao {
     @Query("SELECT * FROM alarm_table")
     LiveData<List<Alarm>> getAlarms();
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Alarm alarm);
 }
