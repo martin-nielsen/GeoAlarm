@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -27,6 +29,7 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 public class  MainActivity extends AppCompatActivity {
     private final int FINE_LOCATION_PERMISSION_CODE = 1;
+    private AlarmViewModel mAlarmViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +43,13 @@ public class  MainActivity extends AppCompatActivity {
     }
 
     private void setUpAlarmList() {
-        AlarmViewModel avm = new ViewModelProvider(this).get(AlarmViewModel.class);
-        avm.getAllAlarms().observe(this, alarms -> {
-            //TODO: update  view
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        final AlarmListAdapter adapter = new AlarmListAdapter(new AlarmListAdapter.AlarmDiff());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAlarmViewModel = new ViewModelProvider(this).get(AlarmViewModel.class);
+        mAlarmViewModel.getAllAlarms().observe(this, alarms -> {
+            adapter.submitList(alarms);
         });
     }
 
