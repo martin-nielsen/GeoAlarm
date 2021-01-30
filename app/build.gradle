@@ -60,6 +60,7 @@ dependencies {
     implementation "androidx.work:work-rxjava2:$work_version"
     implementation "androidx.work:work-gcm:$work_version"
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.5.0'
+    implementation "com.mapbox.search:mapbox-search-android-ui:1.0.0-beta.1"
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
