@@ -1,5 +1,6 @@
 package geoalarmapp.activity.mainactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import geoalarmapp.R;
+import geoalarmapp.activity.CreateAlarmActivity;
 import geoalarmapp.activity.PermissionHandler;
 
 public class  MainActivity extends AppCompatActivity {
@@ -41,7 +43,10 @@ public class  MainActivity extends AppCompatActivity {
         addAlarmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PermissionHandler.checkAndRequestLocationPermission(MainActivity.this);
+                if (PermissionHandler.checkAndRequestLocationPermission(MainActivity.this) == true) {
+                    Intent createAlarmActivityIntent = new Intent(getApplicationContext(), CreateAlarmActivity.class);
+                    startActivity(createAlarmActivityIntent);
+                }
             }
         });
     }

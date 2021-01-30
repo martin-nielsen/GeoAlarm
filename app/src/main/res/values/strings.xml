@@ -5,4 +5,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="mapbox_access_token">pk.eyJ1IjoibWFydGluLW5pZWxzZW4iLCJhIjoiY2traDNhYTE1MXF1cDJ1b2N5bDRob2FjeSJ9.21VXXdYEmC3ZGIJRuBIhvQ</string>
+    <string name="location_picker_select_location_button_cancel">Cancel</string>
+    <string name="location_picker_select_location_button_select">Select</string>
 </resources>

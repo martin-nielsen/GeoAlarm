@@ -8,6 +8,6 @@ public class Alarm {
     @PrimaryKey(autoGenerate = true)
     public Integer id;
     public String name;
-    public float xCoord;
-    public float yCoord;
+    public Double latitude;
+    public Double longitude;
 }
