@@ -27,7 +27,6 @@ import geoalarmapp.data.entity.Alarm;
 
 public class CreateAlarmActivity extends AppCompatActivity {
     private Alarm mAlarm;
-//    private MapView mapView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +50,6 @@ public class CreateAlarmActivity extends AppCompatActivity {
         saveAlarmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO extract coordinates and location name
                 Toast.makeText(CreateAlarmActivity.this, "Clicked save", Toast.LENGTH_SHORT).show();
                 avm.insertAlarm(mAlarm);
             }
@@ -61,6 +59,7 @@ public class CreateAlarmActivity extends AppCompatActivity {
 
     private void initLocationSearch(Bundle savedInstanceState) {
         SearchBottomSheetView searchBottomSheetView = findViewById(R.id.search_view);
+        searchBottomSheetView.hide();
         searchBottomSheetView.initializeSearch(savedInstanceState, new SearchBottomSheetView.Configuration());
         PermissionHandler.checkAndRequestLocationPermission(this);
 
@@ -68,17 +67,17 @@ public class CreateAlarmActivity extends AppCompatActivity {
     }
 
     private void initSearchListener(SearchBottomSheetView searchBottomSheetView) {
-            searchBottomSheetView.addOnSearchResultClickListener(new SearchBottomSheetView.OnSearchResultClickListener() {
+            searchBottomSheetView.addOnSearchResultClickListener(searchResult -> {
+                Log.d("Search results::", searchResult.getName());
+                List<Double> coordinates = searchResult.getCoordinate().coordinates();
+                mAlarm = new Alarm();
+                mAlarm.name = searchResult.getName();
+                mAlarm.latitude = coordinates.get(0);
+                mAlarm.longitude = coordinates.get(1);
 
-                @Override
-                public void onSearchResultClick(@NotNull SearchResult searchResult) {
-                    Log.d("Search results", searchResult.getName());
-                    List<Double> coordinates = searchResult.getCoordinate().coordinates();
-                    mAlarm = new Alarm();
-                    mAlarm.name = searchResult.getName();
-                    mAlarm.latitude = coordinates.get(0);
-                    mAlarm.longitude = coordinates.get(1);
-                }
+                Log.d("Search results::", searchBottomSheetView.getState().toString());
+                searchBottomSheetView.open();
+                Log.d("Search results::", searchBottomSheetView.getState().toString());
             });
     }
 

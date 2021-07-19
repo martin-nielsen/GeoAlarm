@@ -22,9 +22,6 @@ public class PermissionHandler {
                     Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(activity,
                     READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
-
-            // TODO: Remove this dialog as it is uneccessary but good for dev purposes
-            Toast.makeText(activity, "Permission already acquired!", Toast.LENGTH_SHORT).show();
             return true;
         } else {
             // if no permission, request it.
